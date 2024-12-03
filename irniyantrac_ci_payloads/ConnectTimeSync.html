@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Time/Sync Payload</title>
+</head>
+<body>
+    <h1>Connect Time/Sync</h1>
+
+    <h2>Payload with Data Types: (Device to Cloud on “DEVTMCNT” container)</h2>
+    <pre>
+{
+  "op": 1,
+  "to": "&lt;container-ResourceId&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 4,
+  "msgTy": "&lt;String value&gt;",
+  "ot": "",
+  "pc": {
+    "m2m:cin": {
+      "lbl": ["DEVTMCNT"],
+      "cnf": "irn:tsyn",
+      "con": {
+        "devID": "&lt;String value&gt;",
+        "vndID": "&lt;String value&gt;",
+        "msgTy": "&lt;String value&gt;",
+        "imei": "&lt;String value&gt;",
+        "cidFg": "&lt;String value&gt;",
+        "cid": "&lt;String value&gt;",
+        "fwVer": "&lt;String value&gt;",
+        "lat": "&lt;decimal value&gt;",
+        "lng": "&lt;decimal value&gt;"
+      }
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+
+    <h2>Connect Time/Sync Payload with Sample Values:</h2>
+    <pre>
+{
+  "op": 1,
+  "to": "&lt;container-ResourceId&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 4,
+  "msgTy": "04",
+  "ot": "",
+  "pc": {
+    "m2m:cin": {
+      "lbl": ["DEVTMCNT"],
+      "cnf": "irn:tsyn",
+      "con": {
+        "devID": "0362500001",
+        "vndID": "11",
+        "msgTy": "04",
+        "imei": "490154203237518",
+        "cidFg": "S",
+        "cid": "8991101200003204514",
+        "fwVer": "1.0.3",
+        "lat": 35.929673,
+        "lng": 78.948237
+      }
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+
+    <h2>Field Descriptions:</h2>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to (To):</b> The target resource, represented by <code>&lt;container-ResourceId&gt;</code>.</li>
+        <li><b>fr (From):</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi (Request Indentifier):</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 4 represents a content instance resource.</li>
+        <li><b>msgTy (Message Type):</b> Message Type (String value).</li>
+        <li><b>ot (Orginating Timestamp):</b> Current Timestamp of the device when the request is made.</li>
+        <li><b>pc (Primitive Content):</b> Contains the actual request data.
+            <ul>
+                <li><b>m2m:cin:</b> Represents the &lt;contentInstance&gt; object containing:
+                    <ul>
+                        <li><b>lbl:</b> The labels attached to the &lt;contentInstance&gt; resource in the request.</li>
+                        <li><b>cnf:</b>It represents the content info attribute of the &lt;contentInstance&gt; resource.</li>
+                        <li><b>con:</b> The content of the &lt;contentInstance&gt; resource.    
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><b>rvi (Release Version Indicator):</b> Specifies the version of the oneM2M release being used in the request.
+        </li>
+    </ul>
+</body>
+</html>

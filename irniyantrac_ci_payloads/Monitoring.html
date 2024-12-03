@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring Payload</title>
+</head>
+<body>
+    <h1>Monitoring</h1>
+
+    <h2>Payload with Data Types:</h2>
+    <pre>
+
+{
+  "op": 1,
+  "to": "&lt;container-ResourceId&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 4,
+  "ot": "&lt;String value&gt;",
+  "pc": {
+    "m2m:cin": {
+      "lbl": ["MNTCNT"],
+      "cnf": "irn:mnt",
+      "con": {
+        "devID": "&lt;String value&gt;",
+        "astID": "&lt;String value&gt;",
+        "pstID": "&lt;String value&gt;",
+        "vndID": "&lt;String value&gt;",
+        "appID": "&lt;String value&gt;",
+        "msgTy": "&lt;String value&gt;",
+        "astTy": "&lt;String value&gt;",
+        "dgt": "&lt;String value&gt;",
+        "voltR": &lt;decimal value&gt;,
+        "voltY": &lt;decimal value&gt;,
+        "voltB": &lt;decimal value&gt;,
+        "volRY": &lt;decimal value&gt;,
+        "volYB": &lt;decimal value&gt;,
+        "volBR": &lt;decimal value&gt;,
+        "currR": &lt;decimal value&gt;,
+        "currY": &lt;decimal value&gt;,
+        "currB": &lt;decimal value&gt;,
+        "powFR": &lt;decimal value&gt;,
+        "powFY": &lt;decimal value&gt;,
+        "powFB": &lt;decimal value&gt;,
+        "eneCn": &lt;decimal value&gt;,
+        "power": &lt;decimal value&gt;,
+        "freqY": &lt;decimal value&gt;,
+        "eneEx": &lt;decimal value&gt;,
+        "currN": &lt;decimal value&gt;,
+        "powFT": &lt;decimal value&gt;,
+        "kwR": &lt;decimal value&gt;,
+        "kwY": &lt;decimal value&gt;,
+        "kwB": &lt;decimal value&gt;,
+        "kvaR": &lt;decimal value&gt;,
+        "kvaY": &lt;decimal value&gt;,
+        "kvaB": &lt;decimal value&gt;,
+        "kvaT": &lt;decimal value&gt;,
+        "kvarR": &lt;decimal value&gt;,
+        "kvarY": &lt;decimal value&gt;,
+        "kvarB": &lt;decimal value&gt;,
+        "kvarT": &lt;decimal value&gt;,
+        "iKVAh": &lt;decimal value&gt;,
+        "eKVAh": &lt;decimal value&gt;,
+        "rpLg": &lt;decimal value&gt;,
+        "rpLd": &lt;decimal value&gt;,
+        "thdVR": &lt;decimal value&gt;,
+        "thdVY": &lt;decimal value&gt;,
+        "thdVB": &lt;decimal value&gt;,
+        "thdCR": &lt;decimal value&gt;,
+        "thdCY": &lt;decimal value&gt;,
+        "thdCB": &lt;decimal value&gt;
+      }
+    }
+  },
+  "rvi": "3"
+}
+
+
+
+    </pre>
+
+    <h2>Monitoring Payload with Sample Values:</h2>
+    <pre>
+{
+  "op": 1,
+  "to": "&lt;container-ResourceId&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 4,
+  "ot": "20141003T112032",
+  "pc": {
+    "m2m:cin": {
+      "lbl": ["MNTCNT"],
+      "cnf": "irn:mnt",
+      "con": {
+        "devID": "0362500001",
+        "astID": "0360400001",
+        "pstID": "0360100001",
+        "vndID": "11",
+        "appID": "03",
+        "msgTy": "01",
+        "astTy": "04",
+        "dgt": "26102022075135",
+        "voltR": 238.45,
+        "voltY": 240.34,
+        "voltB": 238.52,
+        "volRY": 240.45,
+        "volYB": 240.23,
+        "volBR": 240.65,
+        "currR": 12.12,
+        "currY": 3.45,
+        "currB": 10.23,
+        "powFR": 1.1,
+        "powFY": 0.4,
+        "powFB": -0.3,
+        "eneCn": 123.5,
+        "power": 22.1,
+        "freqY": 50.5,
+        "eneEx": 234.5,
+        "currN": 10.3,
+        "powFT": 1.5,
+        "kwR": 55.0,
+        "kwY": 77.0,
+        "kwB": 50.0,
+        "kvaR": 40.0,
+        "kvaY": 60.0,
+        "kvaB": 80.0,
+        "kvaT": 88.0,
+        "kvarR": 77.0,
+        "kvarY": 87.0,
+        "kvarB": 88.0,
+        "kvarT": 90.0,
+        "iKVAh": 0.0,
+        "eKVAh": 0.0,
+        "rpLg": 0.0,
+        "rpLd": 0.0,
+        "thdVR": 0.0,
+        "thdVY": 0.0,
+        "thdVB": 0.0,
+        "thdCR": 0.0,
+        "thdCY": 0.0,
+        "thdCB": 0.0
+      }
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+
+    <h2>Field Descriptions:</h2>
+    <ul>
+      <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+      <li><b>to (To):</b> The target resource, represented by <code>&lt;container-ResourceId&gt;</code>.</li>
+      <li><b>fr (From):</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+      <li><b>rqi (Request Indentifier):</b> A unique request identifier.</li>
+      <li><b>ty (Resource Type):</b> 4 represents a content instance resource.</li>
+      <li><b>msgTy (Message Type):</b> Message Type (String value).</li>
+      <li><b>ot (Orginating Timestamp):</b> Current Timestamp of the device when the request is made.</li>
+      <li><b>pc (Primitive Content):</b> Contains the actual request data.
+          <ul>
+              <li><b>m2m:cin:</b> Represents the &lt;contentInstance&gt; object containing:
+                  <ul>
+                      <li><b>lbl:</b> The labels attached to the &lt;contentInstance&gt; resource in the request.</li>
+                      <li><b>cnf:</b>It represents the content info attribute of the &lt;contentInstance&gt; resource.</li>
+                      <li><b>con:</b> The content of the &lt;contentInstance&gt; resource.    
+                      </li>
+                  </ul>
+              </li>
+          </ul>
+      </li>
+      <li><b>rvi (Release Version Indicator):</b> Specifies the version of the oneM2M release being used in the request.</li>
+    </ul>
+
+</body>
+</html>

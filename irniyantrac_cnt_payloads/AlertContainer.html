@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Alert Container Documentation</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Alert Container</h1>
+        <p>This payload is used to create an alert container.</p>
+        
+        <!-- Payload Container with Copy Button -->
+        <div class="payload-container">
+            <pre id="payloadText">
+{
+    "op": 1,
+    "to": "<DEVICE-AE-ID>",
+    "fr": "<DEVICE-AE-ID>",
+    "rqi": "<unique-Request-Identifier>",
+    "ty": 3,
+    "pc": {
+        "m2m:cnt": {
+            "rn": "ALTCNT"
+        }
+    },
+    "rvi": "3"
+}
+            </pre>
+            <button class="copy-btn" onclick="copyPayload()">Copy</button>
+        </div>
+
+        <ul>
+            <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+            <li><b>to:</b> The target resource, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+            <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+            <li><b>rqi:</b> A unique request identifier.</li>
+            <li><b>ty (Resource Type):</b> 3 represents a container resource.</li>
+            <li><b>pc (Payload Content):</b> Contains the resource-specific data. Here, a container with the resource name <code>ALTCNT</code> is being created.</li>
+            <li><b>rvi (Release Version):</b> Specifies the version of the oneM2M protocol being used, here "3".</li>
+        </ul>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

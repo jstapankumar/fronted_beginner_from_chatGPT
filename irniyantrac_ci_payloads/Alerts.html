@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts Payload</title>
+</head>
+<body>
+    <h1>Alerts Payload</h1>
+
+    <h2>Payload with Data Types:</h2>
+    <pre>
+{
+  "op": 1,
+  "to": "&lt;container-ResourceId&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 4,
+  "ot": "&lt;devTm&gt;",
+  "pc": {
+    "m2m:cin": {
+      "lbl": ["ALTCNT"],
+      "cnf": "irn:alert",
+      "con": {
+        "devID": "&lt;String value&gt;",
+        "astID": "&lt;String value&gt;",
+        "pstID": "&lt;String value&gt;",
+        "vndID": "&lt;String value&gt;",
+        "appID": "&lt;String value&gt;",
+        "msgTy": "&lt;String value&gt;",
+        "astTy": "&lt;String value&gt;",
+        "altTy": "&lt;String value&gt;",
+        "dgt": "&lt;String value&gt;",
+        "altVal": "&lt;String value&gt;"
+      }
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+
+    <h2>Payload with Sample Values:</h2>
+    <pre>
+{
+  "op": 1,
+  "to": "&lt;container-ResourceId&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 4,
+  "ot": "20141003T112032",
+  "pc": {
+    "m2m:cin": {
+      "lbl": ["ALTCNT"],
+      "cnf": "irn:alert",
+      "con": {
+        "devID": "0362500001",
+        "astID": "0360400001",
+        "pstID": "0360100001",
+        "vndID": "11",
+        "appID": "03",
+        "msgTy": "02",
+        "astTy": "04",
+        "altTy": "01",
+        "dgt": "26102022075135",
+        "altVal": "1"
+      }
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+
+    <h2>Field Descriptions:</h2>
+    <ul>
+      <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+      <li><b>to (To):</b> The target resource, represented by <code>&lt;container-ResourceId&gt;</code>.</li>
+      <li><b>fr (From):</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+      <li><b>rqi (Request Indentifier):</b> A unique request identifier.</li>
+      <li><b>ty (Resource Type):</b> 4 represents a content instance resource.</li>
+      <li><b>msgTy (Message Type):</b> Message Type (String value).</li>
+      <li><b>ot (Orginating Timestamp):</b> Current Timestamp of the device when the request is made.</li>
+      <li><b>pc (Primitive Content):</b> Contains the actual request data.
+          <ul>
+              <li><b>m2m:cin:</b> Represents the &lt;contentInstance&gt; object containing:
+                  <ul>
+                      <li><b>lbl:</b> The labels attached to the &lt;contentInstance&gt; resource in the request.</li>
+                      <li><b>cnf:</b>It represents the content info attribute of the &lt;contentInstance&gt; resource.</li>
+                      <li><b>con:</b> The content of the &lt;contentInstance&gt; resource.    
+                      </li>
+                  </ul>
+              </li>
+          </ul>
+      </li>
+      <li><b>rvi (Release Version Indicator):</b> Specifies the version of the oneM2M release being used in the request.</li>
+    </ul>
+</body>
+</html>

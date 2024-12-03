@@ -1,0 +1,168 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  color: rgba(28, 34, 55, 0.808);
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+  height: 100vh;
+  background-color: #f0f0f0; /* Light gray background for the body */
+  background-image: url('../images/Lovepik_com-401907685-internet-of-things.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Keeps the background fixed when scrolling */
+  z-index: -1; /* Keeps the background behind content */
+}
+
+/* Header Styling */
+header {
+  background: linear-gradient(135deg, #61DAFB, #A7C7E7);
+  color: white;
+  padding: 20px; /* Reduced padding to make header thinner */
+  text-align: center;
+  border-bottom: 3px solid #00B5E2; /* Slightly thinner border */
+  border-radius: 0 0 20px 20px;
+  z-index: 1;
+}
+
+header h1 {
+  font-size: 2rem; /* Adjusted font size for thinner look */
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+header p {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #F1F1F1;
+}
+
+/* Big Card - Fully Transparent container for 20 cards */
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  background: none; /* Fully transparent background */
+  border-radius: 12px;
+  padding-bottom: 40px;
+  box-shadow: none; /* Remove shadow for complete transparency */
+  position: relative;
+  z-index: 2; /* Ensure content stays above the background */
+}
+
+/* List Styles */
+ul.payload-list {
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 3 columns by default */
+  grid-gap: 20px;
+}
+
+/* Individual List Item Styles (Cards) */
+ul.payload-list li {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 15px;
+  border-left: 5px solid #61DAFB;
+  word-wrap: break-word; /* Allow text to wrap if it's too long */
+  max-width: 280px; /* Set max width to prevent overflow */
+  overflow: hidden; /* Hide anything that exceeds the width */
+}
+
+/* Hover Effects for List Items (Cards) */
+ul.payload-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #00B5E2, #61DAFB);
+}
+
+/* Link Styles inside cards */
+ul.payload-list li a {
+  display: block;
+  padding: 15px;
+  color: #1A73E8;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  background-color: #fff;
+  border-top: 4px solid #61DAFB;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  word-wrap: break-word; /* Allow long text to wrap */
+}
+
+/* Hover Effects for Links inside cards */
+ul.payload-list li a:hover {
+  color: white;
+  background-color: #1A73E8;
+  text-decoration: underline;
+}
+
+/* Responsive Design - Tablet Screens */
+@media only screen and (max-width: 768px) {
+  header {
+      padding: 20px; /* Reduced padding for tablets */
+  }
+
+  header h1 {
+      font-size: 1.8rem; /* Slightly smaller font for headings on tablets */
+  }
+
+  header p {
+      font-size: 1rem; /* Adjust subheading font size */
+  }
+
+  ul.payload-list {
+      grid-template-columns: 1fr 1fr; /* Adjust to 2 columns on tablet */
+  }
+
+  .container {
+      padding: 0 10px; /* Reduce padding for the container */
+  }
+
+  ul.payload-list li {
+      max-width: 100%; /* Allow list items to fill the width of the container */
+  }
+}
+
+/* Extra small screens (portrait phones, up to 480px) */
+@media only screen and (max-width: 480px) {
+  header {
+      padding: 15px; /* Reduce padding for phones */
+  }
+
+  header h1 {
+      font-size: 1.5rem; /* Smaller font size for mobile */
+  }
+
+  header p {
+      font-size: 0.9rem; /* Further reduce subheading font size */
+  }
+
+  ul.payload-list {
+      grid-template-columns: 1fr; /* Single column on small screens */
+  }
+
+  ul.payload-list li {
+      padding: 10px; /* Reduce card padding */
+      max-width: 100%; /* Ensure cards fit within the container */
+  }
+
+  ul.payload-list li a {
+      font-size: 1rem; /* Adjust link font size */
+  }
+
+  .container {
+      margin: 20px auto; /* Adjust margin for smaller screens */
+  }
+}

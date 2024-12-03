@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Monitoring Container Subscription</title>
+</head>
+<body>
+    <h1>Monitoring Container Subscription</h1>
+    <p>This payload creates a subscription resource for the monitoring container. It enables event notifications based on specific conditions.</p>
+    <pre>
+{
+  "op": 1,
+  "to": "<container-ResourceId>",
+  "fr": "<DEVICE-AE-ID>",
+  "rqi": "<unique-Request-Identifier>",
+  "ty": 23,
+  "pc": {
+    "m2m:sub": {
+      "rn": "MNTSUB",
+      "enc": {
+        "net": [3],
+        "chty": [4]
+      },
+      "eeno": true,
+      "nu": [
+        "<registrarUrl>/oneM2M/req/irn/json"
+      ],
+      "nct": 1
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource for the subscription, represented by <code>&lt;container-ResourceId&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 23 indicates a subscription resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the subscription-specific details.</li>
+        <li><b>rvi:</b> The protocol release version being used, here "3".</li>
+    </ul>
+</body>
+</html>

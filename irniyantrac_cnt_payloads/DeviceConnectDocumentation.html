@@ -1,0 +1,550 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <title>Device Connect Documentation</title>
+</head>
+<body>
+<h1>                 IR-NIYANTRAC Payloads - MESSAGE FORMAT DOCUMENT v02 </h1>
+    <h1>1. Device Connect Container</h1>
+    <p>
+        This payload is used to create a container resource. In oneM2M architecture, containers act as a logical space to store content instances or organize other resources.
+    </p>
+    <pre>{
+  "op": 1,
+  "to": "&lt;DEVICE-AE-ID&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 3,
+  "pc": {
+    "m2m:cnt": {
+      "rn": "DEVTMCNT"
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource, represented here by <code>&lt;DEVICE-AE-ID&gt;</code> (the Application Entity ID of the target device).</li>
+        <li><b>fr:</b> The originator of the request, also <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi (Request Identifier):</b> A unique ID for tracking the request.</li>
+        <li><b>ty (Resource Type):</b> 3 represents a container resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the resource-specific data. Here, a container with the resource name (rn) <code>DEVTMCNT</code> is being created.</li>
+        <li><b>rvi (Release Version):</b> Specifies the version of the oneM2M protocol being used, here "3".</li>
+    </ul>
+
+    <h1>2. Device Connect Container Subscription</h1>
+    <p>
+        This payload is for creating a subscription resource associated with a container. Subscriptions enable event notifications when specific conditions are met (e.g., resource changes).
+    </p>
+    <pre>{
+  "op": 1,
+  "to": "&lt;container-ResourceId&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 23,
+  "pc": {
+    "m2m:sub": {
+      "rn": "DEVTMSUB",
+      "enc": {
+        "net": [3],
+        "chty": [4]
+      },
+      "eeno": true,
+      "nu": [
+        "&lt;registrarUrl&gt;/oneM2M/req/irn/conn/json"
+      ],
+      "nct": 1
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource for the subscription, represented here by <code>&lt;container-ResourceId&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 23 indicates a subscription resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the subscription-specific details:
+            <ul>
+                <li><b>m2m:sub (Subscription Object):</b>
+                    <ul>
+                        <li><b>rn (Resource Name):</b> The name of the subscription resource (<code>DEVTMSUB</code>).</li>
+                        <li><b>enc (Event Notification Criteria):</b>
+                            <ul>
+                                <li><b>net:</b> Notification event types. Here, 3 represents updates.</li>
+                                <li><b>chty:</b> Child resource types to monitor. Here, 4 represents content instances.</li>
+                            </ul>
+                        </li>
+                        <li><b>eeno:</b> Enable event notification optimization (true/false).</li>
+                        <li><b>nu (Notification URI):</b> A list of URIs to send notifications to (e.g., <code>&lt;registrarUrl&gt;/oneM2M/req/irn/conn/json</code>).</li>
+                        <li><b>nct:</b> Notification content type. Here, 1 indicates resource representation.</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><b>rvi:</b> The protocol release version being used, here "3".</li>
+    </ul>
+ <h1>3.Monitoring Container</h1>
+    <pre>{
+  "op": 1,
+  "to": "&lt;DEVICE-AE-ID&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 3,
+  "pc": {
+    "m2m:cnt": {
+      "rn": "MNTCNT"
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 3 represents a container resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the resource-specific data. Here, a container with the resource name <code>MNTCNT</code> is being created.</li>
+        <li><b>rvi (Release Version):</b> Specifies the version of the oneM2M protocol being used, here "3".</li>
+    </ul>
+
+    <h1>4. Monitoring Container Subscription</h1>
+    <pre>{
+  "op": 1,
+  "to": "&lt;container-ResourceId&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 23,
+  "pc": {
+    "m2m:sub": {
+      "rn": "MNTSUB",
+      "enc": {
+        "net": [3],
+        "chty": [4]
+      },
+      "eeno": true,
+      "nu": [
+        "&lt;registrarUrl&gt;/oneM2M/req/irn/json"
+      ],
+      "nct": 1
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource for the subscription, represented by <code>&lt;container-ResourceId&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 23 indicates a subscription resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the subscription-specific details:
+            <ul>
+                <li><b>rn (Resource Name):</b> The name of the subscription resource (<code>MNTSUB</code>).</li>
+                <li><b>enc (Event Notification Criteria):</b>
+                    <ul>
+                        <li><b>net:</b> Notification event types. Here, 3 represents updates.</li>
+                        <li><b>chty:</b> Child resource types to monitor. Here, 4 represents content instances.</li>
+                    </ul>
+                </li>
+                <li><b>eeno:</b> Enable event notification optimization (true/false).</li>
+                <li><b>nu (Notification URI):</b> A list of URIs to send notifications to (e.g., <code>&lt;registrarUrl&gt;/oneM2M/req/irn/json</code>).</li>
+                <li><b>nct:</b> Notification content type. Here, 1 indicates resource representation.</li>
+            </ul>
+        </li>
+        <li><b>rvi:</b> The protocol release version being used, here "3".</li>
+    </ul>
+
+
+    <h1>5. Alert Container</h1>
+    <pre>{
+  "op": 1,
+  "to": "&lt;DEVICE-AE-ID&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 3,
+  "pc": {
+    "m2m:cnt": {
+      "rn": "ALTCNT"
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 3 represents a container resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the resource-specific data. Here, a container with the resource name <code>ALTCNT</code> is being created.</li>
+        <li><b>rvi (Release Version):</b> Specifies the version of the oneM2M protocol being used, here "3".</li>
+    </ul>
+
+    <h1>6. Alert Container Subscription</h1>
+    <pre>{
+  "op": 1,
+  "to": "&lt;container-ResourceId&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 23,
+  "pc": {
+    "m2m:sub": {
+      "rn": "ALTSUB",
+      "enc": {
+        "net": [3],
+        "chty": [4]
+      },
+      "eeno": true,
+      "nu": [
+        "&lt;registrarUrl&gt;/oneM2M/req/irn/alt/json"
+      ],
+      "nct": 1
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource for the subscription, represented by <code>&lt;container-ResourceId&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 23 indicates a subscription resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the subscription-specific details:
+            <ul>
+                <li><b>rn (Resource Name):</b> The name of the subscription resource (<code>ALTSUB</code>).</li>
+                <li><b>enc (Event Notification Criteria):</b>
+                    <ul>
+                        <li><b>net:</b> Notification event types. Here, 3 represents updates.</li>
+                        <li><b>chty:</b> Child resource types to monitor. Here, 4 represents content instances.</li>
+                    </ul>
+                </li>
+                <li><b>eeno:</b> Enable event notification optimization (true/false).</li>
+                <li><b>nu (Notification URI):</b> A list of URIs to send notifications to (e.g., <code>&lt;registrarUrl&gt;/oneM2M/req/irn/alt/json</code>).</li>
+                <li><b>nct:</b> Notification content type. Here, 1 indicates resource representation.</li>
+            </ul>
+        </li>
+        <li><b>rvi:</b> The protocol release version being used, here "3".</li>
+    </ul>
+
+
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acknowledgement Container Documentation</title>
+
+
+    <h1>7. Acknowledgement Container</h1>
+    <pre>{
+  "op": 1,
+  "to": "&lt;DEVICE-AE-ID&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 3,
+  "pc": {
+    "m2m:cnt": {
+      "rn": "ACKCNT"
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 3 represents a container resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the resource-specific data. Here, a container with the resource name <code>ACKCNT</code> is being created.</li>
+        <li><b>rvi (Release Version):</b> Specifies the version of the oneM2M protocol being used, here "3".</li>
+    </ul>
+
+    <h1>8. Acknowledgement Container Subscription</h1>
+    <pre>{
+  "op": 1,
+  "to": "&lt;container-ResourceId&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 23,
+  "pc": {
+    "m2m:sub": {
+      "rn": "ACKSUB",
+      "enc": {
+        "net": [3],
+        "chty": [4]
+      },
+      "eeno": true,
+      "nu": [
+        "&lt;registrarUrl&gt;/oneM2M/req/irn/ack/json"
+      ],
+      "nct": 1
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource for the subscription, represented by <code>&lt;container-ResourceId&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 23 indicates a subscription resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the subscription-specific details:
+            <ul>
+                <li><b>rn (Resource Name):</b> The name of the subscription resource (<code>ACKSUB</code>).</li>
+                <li><b>enc (Event Notification Criteria):</b>
+                    <ul>
+                        <li><b>net:</b> Notification event types. Here, 3 represents updates.</li>
+                        <li><b>chty:</b> Child resource types to monitor. Here, 4 represents content instances.</li>
+                    </ul>
+                </li>
+                <li><b>eeno:</b> Enable event notification optimization (true/false).</li>
+                <li><b>nu (Notification URI):</b> A list of URIs to send notifications to (e.g., <code>&lt;registrarUrl&gt;/oneM2M/req/irn/ack/json</code>).</li>
+                <li><b>nct:</b> Notification content type. Here, 1 indicates resource representation.</li>
+            </ul>
+        </li>
+        <li><b>rvi:</b> The protocol release version being used, here "3".</li>
+    </ul>
+
+
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring Buffer Container Documentation</title>
+
+
+    <h1>9.Monitoring Buffer Container</h1>
+    <pre>{
+  "op": 1,
+  "to": "&lt;DEVICE-AE-ID&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 3,
+  "pc": {
+    "m2m:cnt": {
+      "rn": "MNTBUFCNT"
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 3 represents a container resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the resource-specific data. Here, a container with the resource name <code>MNTBUFCNT</code> is being created.</li>
+        <li><b>rvi (Release Version):</b> Specifies the version of the oneM2M protocol being used, here "3".</li>
+    </ul>
+
+    <h1>10.Monitoring Buffer Container Subscription</h1>
+    <pre>{
+  "op": 1,
+  "to": "&lt;container-ResourceId&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 23,
+  "pc": {
+    "m2m:sub": {
+      "rn": "MNTBUFSUB",
+      "enc": {
+        "net": [3],
+        "chty": [4]
+      },
+      "eeno": true,
+      "nu": [
+        "&lt;registrarUrl&gt;/oneM2M/req/irnbuf/mnt/json"
+      ],
+      "nct": 1
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource for the subscription, represented by <code>&lt;container-ResourceId&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 23 indicates a subscription resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the subscription-specific details:
+            <ul>
+                <li><b>rn (Resource Name):</b> The name of the subscription resource (<code>MNTBUFSUB</code>).</li>
+                <li><b>enc (Event Notification Criteria):</b>
+                    <ul>
+                        <li><b>net:</b> Notification event types. Here, 3 represents updates.</li>
+                        <li><b>chty:</b> Child resource types to monitor. Here, 4 represents content instances.</li>
+                    </ul>
+                </li>
+                <li><b>eeno:</b> Enable event notification optimization (true/false).</li>
+                <li><b>nu (Notification URI):</b> A list of URIs to send notifications to (e.g., <code>&lt;registrarUrl&gt;/oneM2M/req/irnbuf/mnt/json</code>).</li>
+                <li><b>nct:</b> Notification content type. Here, 1 indicates resource representation.</li>
+            </ul>
+        </li>
+        <li><b>rvi:</b> The protocol release version being used, here "3".</li>
+    </ul>
+
+
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alert Buffer Container Documentation</title>
+
+
+    <h1>11. Alert Buffer Container</h1>
+    <pre>{
+  "op": 1,
+  "to": "&lt;DEVICE-AE-ID&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 3,
+  "pc": {
+    "m2m:cnt": {
+      "rn": "ALTBUFCNT"
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 3 represents a container resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the resource-specific data. Here, a container with the resource name <code>ALTBUFCNT</code> is being created.</li>
+        <li><b>rvi (Release Version):</b> Specifies the version of the oneM2M protocol being used, here "3".</li>
+    </ul>
+
+    <h1>12. Alert Buffer Container Subscription</h1>
+    <pre>{
+  "op": 1,
+  "to": "&lt;container-ResourceId&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 23,
+  "pc": {
+    "m2m:sub": {
+      "rn": "ALTBUFSUB",
+      "enc": {
+        "net": [3],
+        "chty": [4]
+      },
+      "eeno": true,
+      "nu": [
+        "&lt;registrarUrl&gt;/oneM2M/req/irnbuf/alt/json"
+      ],
+      "nct": 1
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource for the subscription, represented by <code>&lt;container-ResourceId&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 23 indicates a subscription resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the subscription-specific details:
+            <ul>
+                <li><b>rn (Resource Name):</b> The name of the subscription resource (<code>ALTBUFSUB</code>).</li>
+                <li><b>enc (Event Notification Criteria):</b>
+                    <ul>
+                        <li><b>net:</b> Notification event types. Here, 3 represents updates.</li>
+                        <li><b>chty:</b> Child resource types to monitor. Here, 4 represents content instances.</li>
+                    </ul>
+                </li>
+                <li><b>eeno:</b> Enable event notification optimization (true/false).</li>
+                <li><b>nu (Notification URI):</b> A list of URIs to send notifications to (e.g., <code>&lt;registrarUrl&gt;/oneM2M/req/irnbuf/alt/json</code>).</li>
+                <li><b>nct:</b> Notification content type. Here, 1 indicates resource representation.</li>
+            </ul>
+        </li>
+        <li><b>rvi:</b> The protocol release version being used, here "3".</li>
+    </ul>
+
+
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acknowledgement Buffer Container Documentation</title>
+
+
+    <h1>13. Acknowledgement Buffer Container</h1>
+    <pre>{
+  "op": 1,
+  "to": "&lt;DEVICE-AE-ID&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 3,
+  "pc": {
+    "m2m:cnt": {
+      "rn": "ACKBUFCNT"
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 3 represents a container resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the resource-specific data. Here, a container with the resource name <code>ACKBUFCNT</code> is being created.</li>
+        <li><b>rvi (Release Version):</b> Specifies the version of the oneM2M protocol being used, here "3".</li>
+    </ul>
+
+    <h1>14. Acknowledgement Buffer Container Subscription</h1>
+    <pre>{
+  "op": 1,
+  "to": "&lt;container-ResourceId&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 23,
+  "pc": {
+    "m2m:sub": {
+      "rn": "ACKBUFSUB",
+      "enc": {
+        "net": [3],
+        "chty": [4]
+      },
+      "eeno": true,
+      "nu": [
+        "&lt;registrarUrl&gt;/oneM2M/req/irnbuf/ack/json"
+      ],
+      "nct": 1
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource for the subscription, represented by <code>&lt;container-ResourceId&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 23 indicates a subscription resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the subscription-specific details:
+            <ul>
+                <li><b>rn (Resource Name):</b> The name of the subscription resource (<code>ACKBUFSUB</code>).</li>
+                <li><b>enc (Event Notification Criteria):</b>
+                    <ul>
+                        <li><b>net:</b> Notification event types. Here, 3 represents updates.</li>
+                        <li><b>chty:</b> Child resource types to monitor. Here, 4 represents content instances.</li>
+                    </ul>
+                </li>
+                <li><b>eeno:</b> Enable event notification optimization (true/false).</li>
+                <li><b>nu (Notification URI):</b> A list of URIs to send notifications to (e.g., <code>&lt;registrarUrl&gt;/oneM2M/req/irnbuf/ack/json</code>).</li>
+                <li><b>nct:</b> Notification content type. Here, 1 indicates resource representation.</li>
+            </ul>
+        </li>
+        <li><b>rvi:</b> The protocol release version being used, here "3".</li>
+    </ul>
+
+</body>
+</html>
+

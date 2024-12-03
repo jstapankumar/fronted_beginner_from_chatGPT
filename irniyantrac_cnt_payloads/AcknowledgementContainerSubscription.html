@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acknowledgement Container Subscription Documentation</title>
+</head>
+<body>
+    <h1>8. Acknowledgement Container Subscription</h1>
+    <pre>{
+  "op": 1,
+  "to": "&lt;container-ResourceId&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 23,
+  "pc": {
+    "m2m:sub": {
+      "rn": "ACKSUB",
+      "enc": {
+        "net": [3],
+        "chty": [4]
+      },
+      "eeno": true,
+      "nu": [
+        "&lt;registrarUrl&gt;/oneM2M/req/irn/ack/json"
+      ],
+      "nct": 1
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource for the subscription, represented by <code>&lt;container-ResourceId&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 23 indicates a subscription resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the subscription-specific details:
+            <ul>
+                <li><b>rn (Resource Name):</b> The name of the subscription resource (<code>ACKSUB</code>).</li>
+                <li><b>enc (Event Notification Criteria):</b>
+                    <ul>
+                        <li><b>net:</b> Notification event types. Here, 3 represents updates.</li>
+                        <li><b>chty:</b> Child resource types to monitor. Here, 4 represents content instances.</li>
+                    </ul>
+                </li>
+                <li><b>eeno:</b> Enable event notification optimization (true/false).</li>
+                <li><b>nu (Notification URI):</b> A list of URIs to send notifications to (e.g., <code>&lt;registrarUrl&gt;/oneM2M/req/irn/ack/json</code>).</li>
+                <li><b>nct:</b> Notification content type. Here, 1 indicates resource representation.</li>
+            </ul>
+        </li>
+        <li><b>rvi:</b> The protocol release version being used, here "3".</li>
+    </ul>
+</body>
+</html>

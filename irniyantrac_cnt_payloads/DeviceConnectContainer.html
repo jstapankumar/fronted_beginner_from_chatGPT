@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Device Connect Container</title>
+</head>
+<body>
+
+  <h2>1. Device Connect Container</h2>
+  <p>
+    This payload is used to create a container resource. In oneM2M architecture, containers act as a logical space to store content instances or organize other resources.
+  </p>
+  <pre>
+  {
+    "op": 1,
+    "to": "&lt;DEVICE-AE-ID&gt;",
+    "fr": "&lt;DEVICE-AE-ID&gt;",
+    "rqi": "&lt;unique-Request-Identifier&gt;",
+    "ty": 3,
+    "pc": {
+      "m2m:cnt": {
+        "rn": "DEVTMCNT"
+      }
+    },
+    "rvi": "3"
+  }
+  </pre>
+  <ul>
+    <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+    <li><b>to:</b> The target resource, represented here by <code>&lt;DEVICE-AE-ID&gt;</code> (the Application Entity ID of the target device).</li>
+    <li><b>fr:</b> The originator of the request, also <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+    <li><b>rqi (Request Identifier):</b> A unique ID for tracking the request.</li>
+    <li><b>ty (Resource Type):</b> 3 represents a container resource.</li>
+    <li><b>pc (Payload Content):</b> Contains the resource-specific data. Here, a container with the resource name (rn) <code>DEVTMCNT</code> is being created.</li>
+    <li><b>rvi (Release Version):</b> Specifies the version of the oneM2M protocol being used, here "3".</li>
+  </ul>
+
+</body>
+</html>

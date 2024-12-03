@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acknowledgement Buffer Container Documentation</title>
+</head>
+<body>
+    <h1>13. Acknowledgement Buffer Container</h1>
+    <pre>{
+  "op": 1,
+  "to": "&lt;DEVICE-AE-ID&gt;",
+  "fr": "&lt;DEVICE-AE-ID&gt;",
+  "rqi": "&lt;unique-Request-Identifier&gt;",
+  "ty": 3,
+  "pc": {
+    "m2m:cnt": {
+      "rn": "ACKBUFCNT"
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation.</li>
+        <li><b>to:</b> The target resource, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier.</li>
+        <li><b>ty (Resource Type):</b> 3 represents a container resource.</li>
+        <li><b>pc (Payload Content):</b> Contains the resource-specific data. Here, a container with the resource name <code>ACKBUFCNT</code> is being created.</li>
+        <li><b>rvi (Release Version):</b> Specifies the version of the oneM2M protocol being used, here "3".</li>
+    </ul>
+</body>
+</html>

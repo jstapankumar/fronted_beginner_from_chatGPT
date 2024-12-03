@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Alert Container Subscription</title>
+</head>
+<body>
+    <h1>Alert Container Subscription</h1>
+    <p>This payload creates a subscription resource for the alert container. It is used to enable event notifications based on certain conditions, such as thresholds or specific data changes.</p>
+    <pre>
+{
+  "op": 1,
+  "to": "<container-ResourceId>",
+  "fr": "<DEVICE-AE-ID>",
+  "rqi": "<unique-Request-Identifier>",
+  "ty": 23,
+  "pc": {
+    "m2m:sub": {
+      "rn": "ALTSUB",
+      "enc": {
+        "net": [3],
+        "chty": [4]
+      },
+      "eeno": true,
+      "nu": [
+        "<registrarUrl>/oneM2M/req/irn/json"
+      ],
+      "nct": 1
+    }
+  },
+  "rvi": "3"
+}
+    </pre>
+    <ul>
+        <li><b>op (Operation):</b> 1 signifies a create operation for the subscription.</li>
+        <li><b>to:</b> The target resource for the subscription, represented by <code>&lt;container-ResourceId&gt;</code>.</li>
+        <li><b>fr:</b> The originator of the request, represented by <code>&lt;DEVICE-AE-ID&gt;</code>.</li>
+        <li><b>rqi:</b> A unique request identifier used for tracking the subscription request.</li>
+        <li><b>ty (Resource Type):</b> 23 indicates the subscription resource type.</li>
+        <li><b>pc (Payload Content):</b> Contains the details of the subscription, such as:
+            <ul>
+                <li><b>rn:</b> The name of the subscription, here represented as <code>ALTSUB</code>.</li>
+                <li><b>enc:</b> Encoding details for the subscription, including:
+                    <ul>
+                        <li><b>net:</b> A list of notification types, here [3].</li>
+                        <li><b>chty:</b> A list of content types, here [4].</li>
+                    </ul>
+                </li>
+                <li><b>eeno:</b> Whether event notifications are enabled; set to <code>true</code>.</li>
+                <li><b>nu:</b> The URL for the notification receiving endpoint, here <code>&lt;registrarUrl&gt;/oneM2M/req/irn/json</code>.</li>
+                <li><b>nct:</b> The notification condition type, set to <code>1</code> here.</li>
+            </ul>
+        </li>
+        <li><b>rvi:</b> The release version of the oneM2M protocol being used, in this case, "3".</li>
+    </ul>
+</body>
+</html>
